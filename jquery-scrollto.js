@@ -33,7 +33,8 @@ $(function(){
         	{
         	    target: '', // the element we would like to scrollto
         	    speed: 'slow',
-        	    easing: 'swing'
+        	    easing: 'swing',
+             callback: undefined
         	};
 
     		return this.each( function()
@@ -46,15 +47,23 @@ $(function(){
 
     			$this.click(function()
     			{
+
+                    callback = function (event) {
+                            if (typeof settings.callback === 'function') {
+                                settings.callback.apply(this, [event]);
+                            }
+                    };
+
                     var y = ( $( settings.target ).offset().top );
 
                     if( $.browser.webkit )
                     {
                         $('body').stop().animate( {scrollTop:y}, settings.duration, settings.easing );
+                        callback();
                     }
                     else
                     {
-                        $('html').stop().animate( {scrollTop:y}, settings.duration, settings.easing );
+                        $('html').stop().animate( {scrollTop:y}, settings.duration, settings.easing, callback );
                     }
                 });
 
