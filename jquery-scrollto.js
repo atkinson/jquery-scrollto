@@ -58,12 +58,12 @@ $(function(){
 
                     if( $.browser.webkit )
                     {
-                        $('body').stop().animate( {scrollTop:y}, settings.duration, settings.easing );
+                        $('body').stop().animate( {scrollTop:y}, settings.speed, settings.easing );
                         callback();
                     }
                     else
                     {
-                        $('html').stop().animate( {scrollTop:y}, settings.duration, settings.easing, callback );
+                        $('html').stop().animate( {scrollTop:y}, settings.speed, settings.easing, callback );
                     }
                 });
 
